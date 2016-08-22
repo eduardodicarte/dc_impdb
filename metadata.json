@@ -1,0 +1,23 @@
+{
+  "author": "eduardodicarte/imperium",
+  "dependencies": [{"name":"puppetlabs/postgresql","version_requirement":">= 4.8.0"}],
+  "license": "MIT",
+  "name": "eduardodicarte-dc_impdb",
+  "operatingsystem_support": [{
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    }],
+  "project_page": "https://github.com/eduardodicarte/dc_impdb",
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.2.1"
+    }
+  ],
+  "source": "git://github.com/eduardodicarte/dc_impdb.git",
+  "summary": "Module that management the database for app of english lessons",
+  "tags": ["imperium","englishlessons","english","englishlearn"],
+  "version": "0.0.1"
+}
