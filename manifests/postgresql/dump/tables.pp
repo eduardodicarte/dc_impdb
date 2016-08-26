@@ -1,5 +1,7 @@
 class dc_impdb::postgresql::dump::tables {
   
+  $sql_table_test = "select * from $dc_impdb::nametbl"
+  
   file { '/tmp/generate_tables.sql':
     ensure  => file,
     owner   => 'postgres',
@@ -14,7 +16,7 @@ class dc_impdb::postgresql::dump::tables {
     cwd     => '/tmp',
     path    => '/usr/bin',
     user    => 'postgres',    
-    unless => "psql -d $dc_impdb::namedb -c 'select * from dict'",
+    unless => "psql -d $dc_impdb::namedb -c $sql_table_test",
     require => File['/tmp/generate_tables.sql']
   }  
 }
