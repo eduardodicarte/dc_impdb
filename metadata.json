@@ -2,7 +2,6 @@
   "author": "eduardodicarte/imperium",
   "dependencies": [
   					{"name":"puppetlabs/postgresql","version_requirement":">= 4.8.0"},
-  					{"name":"eduardodicarte/dc_impfw", "version_requirement":">= 0.0.1"}
   ],
   "license": "MIT",
   "name": "eduardodicarte-dc_impdb",
