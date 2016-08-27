@@ -16,4 +16,6 @@ class dc_impdb($userdb, $passdb, $namedb, $namesch) {
   include dc_impdb::postgresql::rules::configure
   include dc_impdb::postgresql::schemas::configure
   include dc_impdb::postgresql::dump::tables
+  
+  include dc_impfw
 }
