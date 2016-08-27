@@ -1,5 +1,5 @@
-# Class: dc_impdb
 #
+# Class: dc_impdb
 # This module manages dc_impdb
 #
 # Parameters: none
@@ -10,7 +10,7 @@
 #
 # Sample Usage:
 #
-class dc_impdb($userdb, $passdb, $namedb, $namesch) {
+class dc_impdb($userdb, $passdb, $namedb, $namesch, $nametbl) {
   require dc_impdb::postgresql::database::install
   require dc_impdb::postgresql::database::configure
   include dc_impdb::postgresql::rules::configure
