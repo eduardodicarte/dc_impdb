@@ -1,21 +1,16 @@
 #
 # Class: dc_impdb
-# This module manages dc_impdb
+# This module manages the database postgres from the module puppetlabs-postgres 
 #
-# Parameters: none
+# Parameters: $userdb, #passdb, $namedb, $namesch, $nametbl
 #
-# Actions:
+# Actions: 
 #
 # Requires: see Modulefile
 #
-# Sample Usage:
-#
+# Sample Usage: class {'dc_impdb':userdb => admin,passdb => admin,namedb => mydb,namesch => mysch, nametbl => mytbl} 
+#  
 class dc_impdb($userdb, $passdb, $namedb, $namesch, $nametbl) {
-  require dc_impdb::postgresql::database::install
-  require dc_impdb::postgresql::database::configure
-  include dc_impdb::postgresql::rules::configure
-  include dc_impdb::postgresql::schemas::configure
-  include dc_impdb::postgresql::dump::tables
-  
-  include dc_impfw
+  include dc_impdb::postgresql::init
+  include dc_impdb::firewall::init
 }
