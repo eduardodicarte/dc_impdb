@@ -12,4 +12,4 @@ ADD site.pp /puppet/site.pp
 ADD Puppetfile /puppet/Puppetfile
 
 RUN librarian-puppet install 
-RUN puppet apply --modulepath=/puppet/modules site.pp
+RUN puppet apply site.pp
