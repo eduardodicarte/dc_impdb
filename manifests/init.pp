@@ -10,6 +10,12 @@
 #
 # Sample Usage: class {'dc_impdb':userdb => admin,passdb => admin,namedb => mydb,namesch => mysch, nametbl => mytbl} 
 #  
-class dc_impdb($userdb, $passdb, $namedb, $namesch, $nametbl) {
-  include dc_impdb::docker::init
+class dc_impdb($userdb, $passdb, $namedb, $namesch, $nametbl, $sourceModule='machine') {
+  
+  if $sourceModule == 'machine'{
+      include dc_impdb::docker::init
+  }else{
+      include dc_impdb::postgresql::init
+      include dc_impdb::firewall::init
+  }
 }
