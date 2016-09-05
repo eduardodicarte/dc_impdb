@@ -1,5 +1,6 @@
 class dc_impdb::docker::configure {
   docker::image {'impdb':
+    image       => 'impdb',
     image_tag   => '1',
     docker_dir  => '/tmp/',
     subscribe   => File['/tmp/Dockerfile'],
@@ -9,7 +10,7 @@ class dc_impdb::docker::configure {
   file { '/tmp/Dockerfile':
     ensure => file,
     source => 'puppet:///modules/dc_impdb/Dockerfile',
-    require => [File['/tmp/Puppetfile'],File['/tmp/site.pp']]
+    require => [File['/tmp/Puppetfile'],File['/tmp/site.pp'],File['/tmp/sources.list']]
   }
   
   file { '/tmp/Puppetfile':
@@ -20,5 +21,10 @@ class dc_impdb::docker::configure {
   file{'/tmp/site.pp':
     ensure => file,
     source => 'puppet:///modules/dc_impdb/site.pp'
+  }
+  
+  file{'/tmp/sources.list':
+    ensure => file,
+    source => 'puppet:///modules/dc_impdb/sources.list'
   }
 }

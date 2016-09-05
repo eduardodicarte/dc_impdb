@@ -1,8 +1,11 @@
-FROM centos:7
+FROM debian:jessie
 
 MAINTAINER Eduardo Dicarte "eduardo_dicarte@yahoo.com.br"
 
-RUN yum install -y -q wget git-core rubygems 
+ADD sources.list /etc/apt/sources.list
+
+RUN apt-get -y update 
+RUN apt-get -y -q install wget git-core rubygems 
 RUN gem install --no-ri --no-rdoc puppet librarian-puppet
 
 RUN mkdir /puppet
