@@ -2,5 +2,5 @@
 
 forge 'http://forge.puppetlabs.com'
 
-mod 'dc_impdb',
+mod 'dc_impdb', :path => '/etc/puppetlabs/code/environments/production/modules'
   :git => "https://github.com/eduardodicarte/dc_impdb.git"

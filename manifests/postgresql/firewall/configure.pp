@@ -3,7 +3,7 @@ class dc_impdb::postgresql::firewall::configure {
       proto   => 'tcp',
       dport   => '5432',
       action  => 'accept',
-      require => Exec['generate_tables'],
+      require => Package['iptables-services'],
       notify  => Service['iptables']
-    }    
-} 
+    }
+}

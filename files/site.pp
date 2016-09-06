@@ -4,5 +4,10 @@ class { 'dc_impdb':
     namedb       => 'AvdWe&sd#',
     namesch      => 'dict',
     nametbl      => 'el',
-    sourceModule => 'docker' 
+    sourceModule => 'docker',
+    require      => Package['lsb-release']
+}
+
+package { 'lsb-release':
+  ensure => latest,
 }
