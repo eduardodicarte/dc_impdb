@@ -12,13 +12,13 @@
 #
 class dc_impdb($userdb, $passdb, $namedb, $namesch, $nametbl, $sourceModule='machine') {
 
-  if $sourceModule == 'machine'{
-      include dc_impdb::docker::init
-  }else{
+  #if $sourceModule == 'machine'{
+      #include dc_impdb::docker::init
+  #}else{
       contain dc_impdb::postgresql::init
       contain dc_impdb::firewall::init
 
       Class['dc_impdb::postgresql::init'] ->
       Class['dc_impdb::firewall::init']
-  }
+  #}
 }
