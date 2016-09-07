@@ -5,16 +5,18 @@ MAINTAINER Eduardo Dicarte "eduardo_dicarte@yahoo.com.br"
 ADD sources.list /etc/apt/sources.list
 
 RUN apt-get -y update
-RUN apt-get -y -q install wget git-core rubygems
+RUN apt-get -y -q install wget git-core rubygems lsb-release
 RUN gem install --no-ri --no-rdoc puppet librarian-puppet
 
 RUN mkdir /puppet
-RUN mkdir -p /etc/puppetlabs/code/environments/production/modules
-
 WORKDIR /puppet
 
 ADD site.pp /puppet/site.pp
-ADD Puppetfile /puppet/Puppetfile
 
+ADD Puppetfile /puppet/Puppetfile
 RUN librarian-puppet install
+
+RUN mkdir -p /etc/puppetlabs/code/environments/production/modules
+RUN mv modules/* /etc/puppetlabs/code/environments/production/modules/
+
 RUN puppet apply site.pp

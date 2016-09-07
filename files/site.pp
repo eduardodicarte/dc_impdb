@@ -5,9 +5,4 @@ class { 'dc_impdb':
     namesch      => 'dict',
     nametbl      => 'el',
     sourceModule => 'docker',
-    require      => Package['lsb-release']
-}
-
-package { 'lsb-release':
-  ensure => latest,
 }

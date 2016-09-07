@@ -1,10 +1,8 @@
 class dc_impdb::firewall::install {
-  class {'firewall':
-    require => Class['dc_impdb::postgresql::dump::tables']
-  }
+  include 'firewall'
 
-  resources{ 'firewall':
-    purge => true,
-    require => Class["firewall"]
+  package{ 'firewall':
+    ensure => purged,
+    before => Class["firewall"]
   }
 }

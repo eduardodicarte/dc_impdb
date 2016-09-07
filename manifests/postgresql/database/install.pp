@@ -6,7 +6,7 @@ class dc_impdb::postgresql::database::install{
     version             => '9.2',
     before              => Class['postgresql::server']
   }
-  
+
   class { 'postgresql::server':
     ip_mask_allow_all_users => '0.0.0.0/0',
     listen_addresses          => '*'

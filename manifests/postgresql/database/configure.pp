@@ -5,10 +5,9 @@ class dc_impdb::postgresql::database::configure {
       require       => [
                           Class['postgresql::globals'],
                           Class['postgresql::server::service'],
-                          Class['dc_impdb::postgresql::database::install']
                        ]
   }
-  
+
   postgresql::server::db { $dc_impdb::namedb:
      user     => $dc_impdb::userdb,
      password => postgresql_password($dc_impdb::userdb,$dc_impdb::passdb)

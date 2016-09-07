@@ -15,8 +15,8 @@ class dc_impdb($userdb, $passdb, $namedb, $namesch, $nametbl, $sourceModule='mac
   if $sourceModule == 'machine'{
       include dc_impdb::docker::init
   }else{
-      require dc_impdb::postgresql::init
-      require dc_impdb::firewall::init
+      contain dc_impdb::postgresql::init
+      contain dc_impdb::firewall::init
 
       Class['dc_impdb::postgresql::init'] ->
       Class['dc_impdb::firewall::init']
