@@ -1,5 +1,5 @@
 class dc_impdb::docker::configure {
-  docker::image {'debian':
+  docker::image {'impdb':
     docker_dir  => '/tmp/',
     subscribe   => File['/tmp/Dockerfile'],
     require     => Service['docker']

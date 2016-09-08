@@ -19,4 +19,4 @@ RUN librarian-puppet install
 RUN mkdir -p /etc/puppetlabs/code/environments/production/modules
 RUN mv modules/* /etc/puppetlabs/code/environments/production/modules/
 
-RUN puppet apply site.pp
+RUN echo 'Finalizando Configuração da Imagem'
