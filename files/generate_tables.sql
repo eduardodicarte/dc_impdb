@@ -26,7 +26,7 @@ CREATE TABLE  el."translation" (
   CONSTRAINT fk_gender_translation FOREIGN KEY(id_gender) REFERENCES el."gender"
 );
 
-CREATE TABLE el."exception" {
+CREATE TABLE el."exception" (
   id smallserial not null,
   code bytea not null,
   name varchar[60] not null,
@@ -34,7 +34,7 @@ CREATE TABLE el."exception" {
   CONSTRAINT pk_exception PRIMARY KEY(id),
   CONSTRAINT uk_code_exception UNIQUE(code),
   CONSTRAINT uk_name_exception UNIQUE(name)
-};
+);
 
 CREATE TABLE el."word" (
   id serial not null,
