@@ -26,6 +26,16 @@ CREATE TABLE  el."translation" (
   CONSTRAINT fk_gender_translation FOREIGN KEY(id_gender) REFERENCES el."gender"
 );
 
+CREATE TABLE el."exception" {
+  id smallserial not null,
+  code bytea not null,
+  name varchar[60] not null,
+  val varchar [80] not null,
+  CONSTRAINT pk_exception PRIMARY KEY(id),
+  CONSTRAINT uk_code_exception UNIQUE(code),
+  CONSTRAINT uk_name_exception UNIQUE(name)
+};
+
 CREATE TABLE el."word" (
   id serial not null,
   code bytea not null,
@@ -38,14 +48,15 @@ CREATE TABLE el."word" (
 CREATE TABLE el."ruleswd" (
   id serial not null,
   code bytea not null,
-  name varchar[60] not null,
   id_rule int not null,
   id_word smallint not null,
+  id_exception smallint not null,
   CONSTRAINT pk_ruleswd PRIMARY KEY(id),
   CONSTRAINT uk_code_ruleswd UNIQUE(code),
   CONSTRAINT uk_name_ruleswd UNIQUE(code),
   CONSTRAINT fk_rule_ruleswd FOREIGN KEY(id_rule) REFERENCES el."rule",
-  CONSTRAINT fk_word_ruleswd FOREIGN KEY(id_word) REFERENCES el."word"
+  CONSTRAINT fk_word_ruleswd FOREIGN KEY(id_word) REFERENCES el."word",
+  CONSTRAINT fk_exception_ruleswd FOREIGN KEY(id_exception) REFERENCES el."exception"
 );
 
 CREATE TABLE el."verb" (
@@ -60,14 +71,15 @@ CREATE TABLE el."verb" (
 CREATE TABLE el."rulesvb" (
   id serial not null,
   code bytea not null,
-  name varchar[60] not null,
   id_rule int not null,
   id_verb int not null,
+  id_exception smallint not null,
   CONSTRAINT pk_rulesvb PRIMARY KEY(id),
   CONSTRAINT uk_code_rulesvb UNIQUE(code),
   CONSTRAINT uk_name_rulesvb UNIQUE(name),
   CONSTRAINT fk_rule_rulesvb FOREIGN KEY(id_rule) REFERENCES el."rule",
-  CONSTRAINT fk_verb_rulesvb FOREIGN KEY(id_verb) REFERENCES el."verb"
+  CONSTRAINT fk_verb_rulesvb FOREIGN KEY(id_verb) REFERENCES el."verb",
+  CONSTRAINT fk_exception_rulesvb FOREIGN KEY(id_exception) REFERENCES el."exception"
 );
 
 CREATE TABLE el."noun" (
@@ -85,11 +97,13 @@ CREATE TABLE el."rulesnn" (
   name varchar[60] not null,
   id_rule int not null,
   id_noun int not null,
+  id_exception smallint not null,
   CONSTRAINT pk_rulesnn PRIMARY KEY(id),
   CONSTRAINT uk_code_rulesnn UNIQUE(code),
   CONSTRAINT uk_name_rulesnn UNIQUE(name),
   CONSTRAINT fk_rule_rulesnn FOREIGN KEY(id_rule) REFERENCES el."rule",
-  CONSTRAINT fk_noun_rulesnn FOREIGN KEY(id_noun) REFERENCES el."noun"
+  CONSTRAINT fk_noun_rulesnn FOREIGN KEY(id_noun) REFERENCES el."noun",
+  CONSTRAINT fk_exception_rulesnn FOREIGN KEY(id_exception) REFERENCES el."exception"
 );
 
 CREATE TABLE el."preposition" (
@@ -125,14 +139,15 @@ CREATE TABLE el."keyword" (
 CREATE TABLE el."ruleskw" (
   id serial not null,
   code bytea not null,
-  name varchar[60] not null,
   id_rule smallint not null,
   id_keyword smallint not null,
+  id_exception smallint not null,
   CONSTRAINT pk_ruleskw PRIMARY KEY(id),
   CONSTRAINT uk_code_ruleskw UNIQUE(code),
   CONSTRAINT uk_name_ruleskw UNIQUE(name),
   CONSTRAINT fk_rule_ruleskw FOREIGN KEY(id_rule) REFERENCES el."rule",
-  CONSTRAINT fk_keyword_ruleskw FOREIGN KEY(id_keyword) REFERENCES el."keyword"
+  CONSTRAINT fk_keyword_ruleskw FOREIGN KEY(id_keyword) REFERENCES el."keyword",
+  CONSTRAINT fk_exception_ruleskw FOREIGN KEY(id_exception) REFERENCES el."exception"
 );
 
 CREATE TABLE el."number" (
@@ -306,3 +321,4 @@ COMMENT ON TABLE el."translpp" IS 'Tabela que relaciona a preposição com sua r
 COMMENT ON TABLE el."translnb" IS 'Tabela que relaciona o número com sua respectiva tradução';
 COMMENT ON TABLE el."transladj" IS 'Tabela que relaciona o adjetivo com sua respectiva tradução';
 COMMENT ON TABLE el."translpron" IS 'Tabela que relaciona o pronome com sua respectiva tradução';
+COMMENT ON TABLE el."exception" IS 'Tabela que conterá as exceções referente as regras que serão aplicadas no sistema';
