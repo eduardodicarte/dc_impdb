@@ -1,22 +1,33 @@
+CREATE TABLE el."codesc" (
+  id smallserial not null,
+  tname varchar[20] not null,
+  code bytea not null,
+  CONSTRAINT pk_codesc PRIMARY KEY(id),
+  CONSTRAINT uk_tname_codesc UNIQUE(tname),
+  CONSTRAINT uk_code_codesc UNIQUE(code)
+);
+
 CREATE TABLE el."rule" (
-  id serial not null,
+  id smallserial not null,
   code bytea not null,
   name varchar[60] not null,
   val varchar[40] not null,
   CONSTRAINT pk_rule PRIMARY KEY(id),
-  CONSTRAINT uk_code_rule UNIQUE(code)
+  CONSTRAINT uk_code_rule UNIQUE(code),
+  CONSTRAINT uk_name_rule UNIQUE(name)
 );
 
 CREATE TABLE el."gender" (
   id smallserial not null,
   code bytea not null,
-  als varchar[20] not null,
+  val varchar[20] not null,
   CONSTRAINT pk_gender PRIMARY KEY(id),
-  CONSTRAINT uk_code_gender UNIQUE(code)
+  CONSTRAINT uk_code_gender UNIQUE(code),
+  CONSTRAINT uk_name_gender UNIQUE(val)
 );
 
 CREATE TABLE  el."translation" (
-  id serial not null,
+  id smallserial not null,
   code bytea not null,
   val varchar[80] not null,
   id_gender smallint not null,
@@ -48,7 +59,7 @@ CREATE TABLE el."word" (
 CREATE TABLE el."ruleswd" (
   id serial not null,
   code bytea not null,
-  id_rule int not null,
+  id_rule smallint not null,
   id_word smallint not null,
   id_exception smallint not null,
   CONSTRAINT pk_ruleswd PRIMARY KEY(id),
@@ -71,8 +82,8 @@ CREATE TABLE el."verb" (
 CREATE TABLE el."rulesvb" (
   id serial not null,
   code bytea not null,
-  id_rule int not null,
-  id_verb int not null,
+  id_rule smallint not null,
+  id_verb smallint not null,
   id_exception smallint not null,
   CONSTRAINT pk_rulesvb PRIMARY KEY(id),
   CONSTRAINT uk_code_rulesvb UNIQUE(code),
@@ -94,9 +105,8 @@ CREATE TABLE el."noun" (
 CREATE TABLE el."rulesnn" (
   id serial not null,
   code bytea not null,
-  name varchar[60] not null,
-  id_rule int not null,
-  id_noun int not null,
+  id_rule smallint not null,
+  id_noun smallint not null,
   id_exception smallint not null,
   CONSTRAINT pk_rulesnn PRIMARY KEY(id),
   CONSTRAINT uk_code_rulesnn UNIQUE(code),
@@ -118,11 +128,9 @@ CREATE TABLE el."preposition" (
 CREATE TABLE el."tkeyword" (
   id smallserial not null,
   code bytea not null,
-  name varchar[40] not null,
-  val varchar[60] not null,
+  name varchar[60] not null,
   CONSTRAINT pk_tkeyword PRIMARY KEY(id),
-  CONSTRAINT uk_code_tkeyword UNIQUE(code),
-  CONSTRAINT uk_name_tkeyword UNIQUE(name)
+  CONSTRAINT uk_code_tkeyword UNIQUE(code)
 );
 
 CREATE TABLE el."keyword" (
@@ -198,18 +206,17 @@ CREATE TABLE el."questionnaire" (
 	code bytea not null,
   id_question bigint not null,
   id_answer   bigint not null,
-	ranswer     boolean not null,
-	CONSTRAINT pk_questionnaire PRIMARY KEY(id),
+  CONSTRAINT pk_questionnaire PRIMARY KEY(id),
   CONSTRAINT uk_code_questionnaire UNIQUE(code),
 	CONSTRAINT fk_quest_questionnaire FOREIGN KEY(id_question) REFERENCES el."question",
   CONSTRAINT fk_answer_questionnaire FOREIGN KEY(id_answer)  REFERENCES el."answer"
 );
 
 CREATE TABLE el."translwd" (
-  id serial not null,
+  id smallserial not null,
   code bytea not null,
-  id_translation int not null,
-  id_word int not null,
+  id_translation smallint not null,
+  id_word smallint not null,
   CONSTRAINT pk_translwd PRIMARY KEY(id),
   CONSTRAINT uk_code_translwd UNIQUE(code),
   CONSTRAINT fk_translwd_translation FOREIGN KEY(id_translation) REFERENCES el."translation",
@@ -217,10 +224,10 @@ CREATE TABLE el."translwd" (
 );
 
 CREATE TABLE el."translvb" (
-  id serial not null,
+  id smallserial not null,
   code bytea not null,
-  id_translation int not null,
-  id_verb int not null,
+  id_translation smallint not null,
+  id_verb smallint not null,
   CONSTRAINT pk_translvb PRIMARY KEY(id),
   CONSTRAINT uk_code_translvb UNIQUE(code),
   CONSTRAINT fk_translvb_translation FOREIGN KEY(id_translation) REFERENCES el."translation",
@@ -228,10 +235,10 @@ CREATE TABLE el."translvb" (
 );
 
 CREATE TABLE el."translkw" (
-  id serial not null,
+  id smallserial not null,
   code bytea not null,
   id_keyword smallint not null,
-  id_translation int not null,
+  id_translation smallint not null,
   CONSTRAINT pk_translkw PRIMARY KEY(id),
   CONSTRAINT uk_code_translkw UNIQUE(code),
   CONSTRAINT fk_translkw_keyword FOREIGN KEY(id_keyword) REFERENCES el."keyword",
@@ -239,10 +246,10 @@ CREATE TABLE el."translkw" (
 );
 
 CREATE TABLE el."translnn" (
-  id serial not null,
+  id smallserial not null,
   code bytea not null,
-  id_translation int not null,
-  id_noun int not null,
+  id_translation smallint not null,
+  id_noun smallint not null,
   CONSTRAINT pk_translnn PRIMARY KEY(id),
   CONSTRAINT uk_code_transln UNIQUE(code),
   CONSTRAINT fk_transln_translation FOREIGN KEY(id_translation) REFERENCES el."translation",
@@ -250,10 +257,10 @@ CREATE TABLE el."translnn" (
 );
 
 CREATE TABLE el."translpp" (
-  id serial not null,
+  id smallserial not null,
   code bytea not null,
-  id_translation int not null,
-  id_preposition int not null,
+  id_translation smallint not null,
+  id_preposition smallint not null,
   CONSTRAINT pk_translpp PRIMARY KEY(id_translation),
   CONSTRAINT uk_code_translpp UNIQUE(code),
   CONSTRAINT fk_translation FOREIGN KEY(id_translation) REFERENCES el."translation",
@@ -261,9 +268,9 @@ CREATE TABLE el."translpp" (
 );
 
 CREATE TABLE el."translnb" (
-  id serial not null,
+  id smallserial not null,
   code bytea not null,
-  id_translation int not null,
+  id_translation smallint not null,
   id_number smallint not null,
   CONSTRAINT pk_translnb PRIMARY KEY(id),
   CONSTRAINT uk_code_translnb UNIQUE(code),
@@ -272,10 +279,10 @@ CREATE TABLE el."translnb" (
 );
 
 CREATE TABLE el."transladj" (
-  id serial not null,
+  id smallserial not null,
   code bytea not null,
-  id_translation int not null,
-  id_adjective   int not null,
+  id_translation smallint not null,
+  id_adjective   smallint not null,
   CONSTRAINT pk_transladj PRIMARY KEY(id),
   CONSTRAINT uk_code_transladj UNIQUE(code),
   CONSTRAINT fk_transladj_transl FOREIGN KEY(id_translation) REFERENCES el."translation",
@@ -283,16 +290,17 @@ CREATE TABLE el."transladj" (
 );
 
 CREATE TABLE el."translpron" (
-  id serial not null,
+  id smallserial not null,
   code bytea not null,
-  id_translation int not null,
-  id_pronoun     int not null,
+  id_translation smallint not null,
+  id_pronoun     smallint not null,
   CONSTRAINT pk_translpron PRIMARY KEY(id),
   CONSTRAINT uk_code_translpron UNIQUE(code),
   CONSTRAINT fk_translpron_transl FOREIGN KEY(id_translation) REFERENCES el."translation",
   CONSTRAINT fk_translpron_pronoun FOREIGN KEY(id_pronoun) REFERENCES el."pronoun"
 );
 
+COMMENT ON TABLE el."codest" IS 'Tabela contém os códigos para validação nas tabelas do sistema'
 COMMENT ON TABLE el."rule" IS 'Tabela contém as regras que devem ser aplicadas.';
 COMMENT ON TABLE el."gender" IS 'Tabela que definirá se deverá existir uma tradução com o masculino e feminino.';
 COMMENT ON TABLE el."translation" IS 'Tabela conterá as traduções para verbos, palavras, pronomes, adjetivos, substantivos.';
