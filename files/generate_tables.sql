@@ -1,10 +1,10 @@
-CREATE TABLE el."codesc" (
+CREATE TABLE el."codest" (
   id smallserial not null,
   tname varchar[20] not null,
   code bytea not null,
-  CONSTRAINT pk_codesc PRIMARY KEY(id),
-  CONSTRAINT uk_tname_codesc UNIQUE(tname),
-  CONSTRAINT uk_code_codesc UNIQUE(code)
+  CONSTRAINT pk_codest PRIMARY KEY(id),
+  CONSTRAINT uk_tname_codest UNIQUE(tname),
+  CONSTRAINT uk_code_codest UNIQUE(code)
 );
 
 CREATE TABLE el."rule" (
