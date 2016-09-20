@@ -87,7 +87,6 @@ CREATE TABLE el."rulesvb" (
   id_exception smallint not null,
   CONSTRAINT pk_rulesvb PRIMARY KEY(id),
   CONSTRAINT uk_code_rulesvb UNIQUE(code),
-  CONSTRAINT uk_name_rulesvb UNIQUE(name),
   CONSTRAINT fk_rule_rulesvb FOREIGN KEY(id_rule) REFERENCES el."rule",
   CONSTRAINT fk_verb_rulesvb FOREIGN KEY(id_verb) REFERENCES el."verb",
   CONSTRAINT fk_exception_rulesvb FOREIGN KEY(id_exception) REFERENCES el."exception"
