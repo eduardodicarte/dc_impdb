@@ -64,7 +64,6 @@ CREATE TABLE el."ruleswd" (
   id_exception smallint not null,
   CONSTRAINT pk_ruleswd PRIMARY KEY(id),
   CONSTRAINT uk_code_ruleswd UNIQUE(code),
-  CONSTRAINT uk_name_ruleswd UNIQUE(code),
   CONSTRAINT fk_rule_ruleswd FOREIGN KEY(id_rule) REFERENCES el."rule",
   CONSTRAINT fk_word_ruleswd FOREIGN KEY(id_word) REFERENCES el."word",
   CONSTRAINT fk_exception_ruleswd FOREIGN KEY(id_exception) REFERENCES el."exception"
@@ -109,7 +108,6 @@ CREATE TABLE el."rulesnn" (
   id_exception smallint not null,
   CONSTRAINT pk_rulesnn PRIMARY KEY(id),
   CONSTRAINT uk_code_rulesnn UNIQUE(code),
-  CONSTRAINT uk_name_rulesnn UNIQUE(name),
   CONSTRAINT fk_rule_rulesnn FOREIGN KEY(id_rule) REFERENCES el."rule",
   CONSTRAINT fk_noun_rulesnn FOREIGN KEY(id_noun) REFERENCES el."noun",
   CONSTRAINT fk_exception_rulesnn FOREIGN KEY(id_exception) REFERENCES el."exception"
@@ -151,7 +149,6 @@ CREATE TABLE el."ruleskw" (
   id_exception smallint not null,
   CONSTRAINT pk_ruleskw PRIMARY KEY(id),
   CONSTRAINT uk_code_ruleskw UNIQUE(code),
-  CONSTRAINT uk_name_ruleskw UNIQUE(name),
   CONSTRAINT fk_rule_ruleskw FOREIGN KEY(id_rule) REFERENCES el."rule",
   CONSTRAINT fk_keyword_ruleskw FOREIGN KEY(id_keyword) REFERENCES el."keyword",
   CONSTRAINT fk_exception_ruleskw FOREIGN KEY(id_exception) REFERENCES el."exception"
