@@ -1,6 +1,4 @@
 class dc_impdb::postgresql::dump::migrate {
-
-https://github.com/EnglishLesson/dc_templatedb
   vcsrepo { '/tmp/dc_templatedb':
     ensure   => present,
     provider => git,
