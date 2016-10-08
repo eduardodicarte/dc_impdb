@@ -61,7 +61,7 @@ CREATE TABLE el."rulesvb" (
   id_rule smallint not null,
   id_verb smallint not null,
   CONSTRAINT pk_rulesvb PRIMARY KEY(id),
-  CONSTRAINT fk_rule_rulesvb FOREING KEY(id_rule) REFERENCES el."rule",
+  CONSTRAINT fk_rule_rulesvb FOREIGN KEY(id_rule) REFERENCES el."rule",
   CONSTRAINT fk_verb_rulesvb FOREIGN KEY(id_verb) REFERENCES el."verb"
 );
 
