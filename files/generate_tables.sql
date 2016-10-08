@@ -27,7 +27,7 @@ CREATE TABLE  el."translation" (
 );
 
 CREATE TABLE el."word" (
-  id serial not null,
+  id smallserial not null,
   code bytea not null,
   val varchar(80) not null,
   CONSTRAINT pk_word PRIMARY KEY(id),
@@ -36,19 +36,18 @@ CREATE TABLE el."word" (
 );
 
 CREATE TABLE el."ruleswd" (
-  id serial not null,
+  id smallserial not null,
   code bytea not null,
   id_rule smallint not null,
   id_word smallint not null,
   CONSTRAINT pk_ruleswd PRIMARY KEY(id),
   CONSTRAINT uk_code_ruleswd UNIQUE(code),
   CONSTRAINT fk_rule_ruleswd FOREIGN KEY(id_rule) REFERENCES el."rule",
-  CONSTRAINT fk_word_ruleswd FOREIGN KEY(id_word) REFERENCES el."word",
-  CONSTRAINT fk_exception_ruleswd FOREIGN KEY(id_exception) REFERENCES el."exception"
+  CONSTRAINT fk_word_ruleswd FOREIGN KEY(id_word) REFERENCES el."word"
 );
 
 CREATE TABLE el."verb" (
-  id serial not null,
+  id smallserial not null,
   code bytea not null,
   val  varchar(80) not null,
   CONSTRAINT pk_verb PRIMARY KEY(id),
@@ -57,16 +56,17 @@ CREATE TABLE el."verb" (
 );
 
 CREATE TABLE el."rulesvb" (
-  id serial not null,
+  id smallserial not null,
   code bytea not null,
   id_rule smallint not null,
   id_verb smallint not null,
   CONSTRAINT pk_rulesvb PRIMARY KEY(id),
+  CONSTRAINT fk_rule_rulesvb FOREING KEY(id_rule) REFERENCES el."rule",
   CONSTRAINT fk_verb_rulesvb FOREIGN KEY(id_verb) REFERENCES el."verb"
 );
 
 CREATE TABLE el."noun" (
-  id   serial not null,
+  id   smallserial not null,
   code bytea not null,
   val  varchar(80) not null,
   CONSTRAINT pk_noun PRIMARY KEY(id),
@@ -75,7 +75,7 @@ CREATE TABLE el."noun" (
 );
 
 CREATE TABLE el."rulesnn" (
-  id serial not null,
+  id smallserial not null,
   code bytea not null,
   id_rule smallint not null,
   id_noun smallint not null,
@@ -85,7 +85,7 @@ CREATE TABLE el."rulesnn" (
 );
 
 CREATE TABLE el."preposition" (
-  id serial not null,
+  id smallserial not null,
   code bytea not null,
   val  varchar(60) not null,
   CONSTRAINT pk_preposition PRIMARY KEY(id),
@@ -113,7 +113,7 @@ CREATE TABLE el."keyword" (
 );
 
 CREATE TABLE el."ruleskw" (
-  id serial not null,
+  id smallserial not null,
   code bytea not null,
   id_rule smallint not null,
   id_keyword smallint not null,
@@ -132,7 +132,7 @@ CREATE TABLE el."number" (
 );
 
 CREATE TABLE el."adjective" (
-  id serial not null,
+  id smallserial not null,
   code bytea not null,
   val varchar(80) not null,
   CONSTRAINT pk_adjective PRIMARY KEY(id),
@@ -150,29 +150,29 @@ CREATE TABLE el."pronoun" (
 );
 
 CREATE TABLE el."answer" (
-	id bigserial not null,
-	code bytea not null,
-	val  varchar(120) not null,
+  id bigserial not null,
+  code bytea not null,
+  val  varchar(120) not null,
   CONSTRAINT pk_answer PRIMARY KEY(id),
-	CONSTRAINT uk_code_answs UNIQUE(code)
+  CONSTRAINT uk_code_answs UNIQUE(code)
 );
 
 CREATE TABLE el."question"(
-	id bigserial not null,
-	code bytea not null,
-	val  varchar(120) not null,
-	CONSTRAINT pk_quest PRIMARY KEY(id),
-	CONSTRAINT uk_code_quest UNIQUE(code)
+ id bigserial not null,
+ code bytea not null,
+ val  varchar(120) not null,
+ CONSTRAINT pk_quest PRIMARY KEY(id),
+ CONSTRAINT uk_code_quest UNIQUE(code)
 );
 
 CREATE TABLE el."questionnaire" (
-	id bigserial not null,
-	code bytea not null,
+  id bigserial not null,
+  code bytea not null,
   id_question bigint not null,
   id_answer   bigint not null,
   CONSTRAINT pk_questionnaire PRIMARY KEY(id),
   CONSTRAINT uk_code_questionnaire UNIQUE(code),
-	CONSTRAINT fk_quest_questionnaire FOREIGN KEY(id_question) REFERENCES el."question",
+  CONSTRAINT fk_quest_questionnaire FOREIGN KEY(id_question) REFERENCES el."question",
   CONSTRAINT fk_answer_questionnaire FOREIGN KEY(id_answer)  REFERENCES el."answer"
 );
 
