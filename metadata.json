@@ -4,7 +4,8 @@
   					{"name":"puppetlabs/postgresql","version_requirement":">=4.8.0"},
   					{"name":"puppetlabs/firewall","version_requirement":">=1.8.1"},
   					{"name":"garethr/docker","version_requirement":">=5.3.0"},
-            {"name":"puppetlabs/vcsrepo","version_requirement":"=1.4.0"}
+            {"name":"puppetlabs/vcsrepo","version_requirement":"=1.4.0"},
+            {"name":"maestrodev-rvm", "version_requirement":"= 1.13.1"}
   				],
   "license": "MIT",
   "name": "eduardodicarte-dc_impdb",
