@@ -16,7 +16,7 @@ class dc_impdb::postgresql::dump::migrate {
   source   => {'origin'       => 'https://github.com/EnglishLesson/dc_procxls.git'},
   } ->
   package { 'ruby':
-    ensure => '1.9.3'
+    ensure => present
   } ->
   package { 'rubyXL':
     ensure => present,
